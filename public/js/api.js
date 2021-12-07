@@ -34,7 +34,7 @@ const API = {
 
         return json;
     },
-
+    //what does this mean?
     async getWorkoutsInRange() {
         const res = await fetch(`/api/workouts/range`);
         const json = await res.json();
