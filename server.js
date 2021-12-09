@@ -14,7 +14,7 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(express.static(path.join(__dirname, 'views')));
+
 
 app.use(logger("dev"));
 app.use(express.json());
