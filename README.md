@@ -3,6 +3,11 @@
  
 # Description  
 Stay on top of your fitness goals! Create a workout, add exercises to your workout until you are finished with that workout. Stats are available on your dashboard to show your duration progression, as well as, weight progression.  
+
+Live link: https://morning-gorge-84073.herokuapp.com/?id=61b56461abb02ea854efa0f7
+
+<img src="./assets/App-screenshot.png" height="300">
+
 # Table of contents  
 [Installation](#installation)  
 [Usage](#usage)  
