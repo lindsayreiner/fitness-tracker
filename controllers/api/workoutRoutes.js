@@ -2,7 +2,7 @@ const router = require('express').Router();
 const Workout = require('../../models/workout');
 
 //getLastWorkout function in api.js
-router.get('/', function ({ body }, res) {
+router.get('/', ({ body }, res) => {
     Workout.find({})
         .sort({ _id: -1 })
         .limit(1)
@@ -12,11 +12,11 @@ router.get('/', function ({ body }, res) {
         })
         .catch(err => {
             res.json(err);
-        })
+        });
 });
 
 //addExercise function in api.js
-router.put('/:id', function ({ body, params }, res) {
+router.put('/:id', ({ body, params }, res) => {
     Workout.findOneAndUpdate(
         params.id,
         { $push: { exercises: body } },
@@ -27,13 +27,13 @@ router.put('/:id', function ({ body, params }, res) {
         })
         .catch(err => {
             res.json(err);
-        })
+        });
 
 });
 
 //createWorkout function in api.js
-router.post('/', async ({ body }, res) => {
-    console.log('hello')
+router.post('/', ({ body }, res) => {
+    console.log('hello');
     Workout.create({})
         .then(dbWorkouts => {
             console.log(dbWorkouts);
@@ -41,8 +41,8 @@ router.post('/', async ({ body }, res) => {
         })
         .catch(err => {
             console.log(err);
-            res.json(err)
-        })
+            res.json(err);
+        });
 })
 
 //getWorkoutsInRange function on api.js
