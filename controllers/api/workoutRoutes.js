@@ -7,7 +7,13 @@ router.get('/', ({ body }, res) => {
         .sort({ _id: -1 })
         .limit(1)
         .then(dbWorkout => {
-            console.log(dbWorkout);
+            dbWorkout.forEach((workout) => {
+                let total = 0;
+                workout.exercises.forEach((exercise) => {
+                    total += exercise.duration;
+                });
+                workout.totalDuration = total;
+            });
             res.json(dbWorkout);
         })
         .catch(err => {
@@ -19,7 +25,10 @@ router.get('/', ({ body }, res) => {
 router.put('/:id', ({ body, params }, res) => {
     Workout.findOneAndUpdate(
         params.id,
-        { $push: { exercises: body } },
+        {
+            $push: { exercises: body },
+            $inc: { totalDuration: body.duration }
+        },
         { new: true }
     )
         .then(dbWorkout => {
