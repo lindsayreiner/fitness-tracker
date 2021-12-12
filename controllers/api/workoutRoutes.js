@@ -14,6 +14,7 @@ router.get('/', ({ body }, res) => {
                 });
                 workout.totalDuration = total;
             });
+            console.log(dbWorkout[0].exercises)
             res.json(dbWorkout);
         })
         .catch(err => {
@@ -24,7 +25,7 @@ router.get('/', ({ body }, res) => {
 //addExercise function in api.js
 router.put('/:id', ({ body, params }, res) => {
     Workout.findOneAndUpdate(
-        params.id,
+        { _id: params.id },
         {
             $push: { exercises: body },
             $inc: { totalDuration: body.duration }
@@ -32,6 +33,7 @@ router.put('/:id', ({ body, params }, res) => {
         { new: true }
     )
         .then(dbWorkout => {
+            console.log(dbWorkout);
             res.json(dbWorkout);
         })
         .catch(err => {
@@ -45,11 +47,9 @@ router.post('/', ({ body }, res) => {
     console.log('hello');
     Workout.create({})
         .then(dbWorkouts => {
-            console.log(dbWorkouts);
             res.json(dbWorkouts);
         })
         .catch(err => {
-            console.log(err);
             res.json(err);
         });
 })
